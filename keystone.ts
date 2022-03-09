@@ -7,6 +7,7 @@ import 'dotenv/config';
 import { Context } from './firebaseAuth';
 import * as Keystone from '.keystone/types';
 import { DateTime, Interval } from 'luxon';
+import { DATABASE_URL, PORT } from './config';
 
 const serviceAccount = {
   "type": "service_account",
@@ -224,10 +225,12 @@ const extendGraphqlSchema = graphQLSchemaExtension<Context>({
 export default config({
   db: {
     provider: 'postgresql',
-    url: process.env.DATABASE_URL || 'file:./keystone-example.db',
+    useMigrations: true,
+    url: DATABASE_URL,
   },
   lists,
   server: {
+    port: PORT,
     extendExpressApp: (app) => {
       app.use('/site', express.static('public'));
     }

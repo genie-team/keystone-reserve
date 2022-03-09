@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "keystone dev",
     "start": "keystone start",
-    "build": "keystone build",
+    "build": "keystone build && keystone prisma migrate deploy",
     "fresh": "yarn clean && yarn",
     "clean": "rimraf \"**/node_modules\" \"**/yarn-error.log\" \"**/out.log\" \"**/.DS_Store\" \"**/dist\""
   },
